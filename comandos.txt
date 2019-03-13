@@ -1,0 +1,12 @@
+echo "# onebitchat" >> README.md
+git init
+git add .
+git commit -m "first commit"
+git remote add origin git@github.com:thbdias/onebitchat.git
+git push -u origin master
+
+docker run -it --rm --user "$(id -u):$(id -g)" -v "$PWD":/usr/src/app -w /usr/src/app rails rails new --skip-bundle onebitchat --database=postgresql
+
+docker-compose build
+
+docker-compose run --rm bundle exec rails c
