@@ -5,6 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'devise'
+gem 'cancancan'
+gem 'materialize-sass', '~> 0.98.2'
+gem 'material_icons'
+gem 'redis', '~> 3.0.0'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
@@ -35,9 +41,17 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+group :test do
+  # criar fábricas de records baseados em models
+  gem "factory_girl_rails" 
+  # dados faker
+  gem "ffaker"
+end
+
+group :development, :test do  
   gem 'byebug', platform: :mri
+  # fazer testes unitários -> métodos por métodos
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do

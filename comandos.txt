@@ -1,12 +1,28 @@
+**************************************************************************************************************************************************
 echo "# onebitchat" >> README.md
 git init
 git add .
 git commit -m "first commit"
 git remote add origin git@github.com:thbdias/onebitchat.git
 git push -u origin master
+**************************************************************************************************************************************************
 
 docker run -it --rm --user "$(id -u):$(id -g)" -v "$PWD":/usr/src/app -w /usr/src/app rails rails new --skip-bundle onebitchat --database=postgresql
 
 docker-compose build
-
+docker-compose up
 docker-compose run --rm bundle exec rails c
+docker-compose run --rm website bundle install
+docker-compose run --rm website bundle exec rake db:create
+docker-compose run --rm website bundle exec rake db:migrate
+
+--> RSPEC
+docker-compose run --rm website bundle exec rails generate rspec:install
+
+--> DEVISE
+docker-compose run --rm website bundle exec rails generate devise:install
+docker-compose run --rm website bundle exec rails generate devise User
+
+--> CANCANCAN
+docker-compose run --rm website bundle exec rails g cancan:ability
+**************************************************************************************************************************************************
