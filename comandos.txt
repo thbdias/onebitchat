@@ -22,6 +22,7 @@ docker-compose run --rm website bundle exec rails generate rspec:install
 --> DEVISE
 docker-compose run --rm website bundle exec rails generate devise:install
 docker-compose run --rm website bundle exec rails generate devise User
+docker-compose run --rm website bundle exec rails generate devise:views
 
 --> CANCANCAN
 docker-compose run --rm website bundle exec rails g cancan:ability
