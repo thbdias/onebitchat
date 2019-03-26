@@ -26,4 +26,10 @@ docker-compose run --rm website bundle exec rails generate devise:views
 
 --> CANCANCAN
 docker-compose run --rm website bundle exec rails g cancan:ability
+
+--> Models 
+docker-compose run --rm website bundle exec rails g model Team slug:string user_id:integer
+docker-compose run --rm website bundle exec rails g model Channel slug:string user:references team:references
+docker-compose run --rm website bundle exec rails g model Message body:text user_id:integer messagable_id:integer messagable_type:string
+docker-compose run --rm website bundle exec rails g model Talk user_one_id:integer user_two_id:integer team:references
 **************************************************************************************************************************************************
