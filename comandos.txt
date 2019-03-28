@@ -32,4 +32,5 @@ docker-compose run --rm website bundle exec rails g model Team slug:string user_
 docker-compose run --rm website bundle exec rails g model Channel slug:string user:references team:references
 docker-compose run --rm website bundle exec rails g model Message body:text user_id:integer messagable_id:integer messagable_type:string
 docker-compose run --rm website bundle exec rails g model Talk user_one_id:integer user_two_id:integer team:references
+docker-compose run --rm website bundle exec rails g model TeamUser user:references team:references
 **************************************************************************************************************************************************
