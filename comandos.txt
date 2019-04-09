@@ -18,6 +18,7 @@ docker-compose run --rm website bundle exec rake db:migrate
 
 --> RSPEC
 docker-compose run --rm website bundle exec rails generate rspec:install
+docker-compose run --rm website bundle exec rspec spec/controllers/
 
 --> DEVISE
 docker-compose run --rm website bundle exec rails generate devise:install
