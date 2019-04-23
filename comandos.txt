@@ -18,7 +18,11 @@ docker-compose run --rm website bundle exec rake db:migrate
 
 --> RSPEC
 docker-compose run --rm website bundle exec rails generate rspec:install
-docker-compose run --rm website bundle exec rspec spec/controllers/
+
+--Testando
+# escolhendo arquivo:linha com comando it para testar
+docker-compose run --rm website bundle exec rspec spec/controllers/teams_controller_spec.rb:22
+docker-compose run --rm website bundle exec rspec spec/controllers
 
 --> DEVISE
 docker-compose run --rm website bundle exec rails generate devise:install
@@ -34,4 +38,11 @@ docker-compose run --rm website bundle exec rails g model Channel slug:string us
 docker-compose run --rm website bundle exec rails g model Message body:text user_id:integer messagable_id:integer messagable_type:string
 docker-compose run --rm website bundle exec rails g model Talk user_one_id:integer user_two_id:integer team:references
 docker-compose run --rm website bundle exec rails g model TeamUser user:references team:references
+
+--> Controllers 
+--skip-template-engine -> não gere as views ao se gerar os controllers
+docker-compose run --rm website bundle exec rails g controller Teams index show create destroy --skip-template-engine
+docker-compose run --rm website bundle exec rails g controller Channels create destroy show --skip-template-engine
+docker-compose run --rm website bundle exec rails g controller Talks show --skip-template-engine
+docker-compose run --rm website bundle exec rails g controller TeamUsers create destroy --skip-template-engine
 **************************************************************************************************************************************************

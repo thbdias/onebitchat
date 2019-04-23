@@ -43,7 +43,8 @@ gem 'jbuilder', '~> 2.5'
 
 group :test do
   # criar fábricas de records baseados em models
-  gem "factory_girl_rails" 
+  # gem "factory_girl_rails" 
+  gem "factory_bot_rails" 
   # dados faker
   gem "ffaker"
 end

@@ -5,7 +5,7 @@ RSpec.describe TeamsController, type: :controller do
 
   before(:each) do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    @current_user = FactoryGirl.create(:user)
+    @current_user = FactoryBot.create(:user)
     sign_in @current_user
   end
 
@@ -31,16 +31,16 @@ RSpec.describe TeamsController, type: :controller do
         it "Returns success" do
           team = create(:team)
           team.users << @current_user
-          get :show, params: {slug: team.slug}
-
-          expect(response).to have_http_status(:success)
+          get :show, params: {slug: team.slug}          
+          
+          expect(response).to have_http_status(:success)          
         end
       end
 
       context "User is not the owner or member of the team" do
         it "Redirects to root" do
-          team = create(:team)
-          get :show, params: {slug: team.slug}
+          team = create(:team)          
+          get :show, params: {slug: team.slug}          
 
           expect(response).to redirect_to('/')
         end

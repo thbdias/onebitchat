@@ -7,7 +7,7 @@ RSpec.describe TalksController, type: :controller do
     request.env["HTTP_ACCEPT"] = 'application/json'
 
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    @current_user = FactoryGirl.create(:user)
+    @current_user = FactoryBot.create(:user)
     sign_in @current_user
   end
 
@@ -22,10 +22,8 @@ RSpec.describe TalksController, type: :controller do
         @team.users << @guest_user
         @talk = create(:talk, user_one: @current_user, user_two: @guest_user, team: @team)
 
-        # @message1 = build(:message)
-        # @message2 = build(:message)
-        @message1 = create(:message)
-        @message2 = create(:message)
+        @message1 = build(:message)
+        @message2 = build(:message)
         @talk.messages << [@message1, @message2]
 
         get :show, params: {id: @guest_user, team_id: @team.id}

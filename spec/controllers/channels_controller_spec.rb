@@ -7,7 +7,7 @@ RSpec.describe ChannelsController, type: :controller do
     request.env["HTTP_ACCEPT"] = 'application/json'
 
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    @current_user = FactoryGirl.create(:user)
+    @current_user = FactoryBot.create(:user)
     sign_in @current_user
   end
 
@@ -66,10 +66,8 @@ RSpec.describe ChannelsController, type: :controller do
         team = create(:team, user: @current_user)
         @channel = create(:channel, team: team)
 
-        # @message1 = build(:message)
-        # @message2 = build(:message)
-        @message1 = create(:message)
-        @message2 = create(:message)
+        @message1 = build(:message)
+        @message2 = build(:message)        
         @channel.messages << [@message1, @message2]
 
         get :show, params: {id: @channel.id}
