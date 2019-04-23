@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   before_action :set_by_slug_team, only: [:show]
 
   def index
-    @teams = current_user.teams
+    # @teams = current_user.teams
   end
 
   def show
@@ -30,8 +30,9 @@ class TeamsController < ApplicationController
     @team.destroy
 
     respond_to do |format|
-      format.json { head :no_content }
-      format.html { redirect_to main_app.root_url, notice: 'Tea deleted' }
+      format.json { render json: true }
+      # format.json { head :no_content } -> volta só o status na chamada
+      # format.html { redirect_to main_app.root_url, notice: 'Tea deleted' }
     end
   end
 
